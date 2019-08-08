@@ -1,4 +1,4 @@
-# Impelmentation of [FCOS](https://arxiv.org/abs/1904.01355) with [VoVNet](https://arxiv.org/abs/1904.09730)(CVPRW'19) Efficient Backbone Networks
+# [FCOS](https://arxiv.org/abs/1904.01355) with [VoVNet](https://arxiv.org/abs/1904.09730)(CVPRW'19) Efficient Backbone Networks
 
 This repository contains [FCOS](https://github.com/facebookresearch/maskrcnn-benchmark)(ICCV'19) with [VoVNet](https://arxiv.org/abs/1904.09730) (CVPRW'19) efficient backbone networks. This code based on pytorch imeplementation of [FCOS](https://github.com/tianzhi0549/FCOS) 
 
@@ -60,12 +60,14 @@ python -m torch.distributed.launch --nproc_per_node=$NGPUS tools/train_net.py --
 
 ## Evaluation
 Follow [the instructions](https://github.com/tianzhi0549/FCOS#inference)
+
 First of all, you have to download the weight file you want to inference.
+
 For examaple,
 ##### multi-gpu evaluation & test batch size 16,
 
 ```bash
-wget https://www.dropbox.com/s/8n0wyypfggliplw/FCOS-V-39-FPN-1x.pth?dl=0
+wget https://dl.dropbox.com/s/8n0wyypfggliplw/FCOS-V-39-FPN-1x.pth?dl=1
 export NGPUS=8
 python -m torch.distributed.launch --nproc_per_node=$NGPUS tools/test_net.py --config-file "configs/vovnet/fcos_V_39_FPN_1x.yaml" TEST.IMS_PER_BATCH 16 MODEL.WEIGHT FCOS-V-39-FPN-1x.pth
 ```
@@ -73,12 +75,12 @@ python -m torch.distributed.launch --nproc_per_node=$NGPUS tools/test_net.py --c
 ##### single-gpu evaluation & test batch size 1,
 
 ```bash
-wget https://www.dropbox.com/s/8n0wyypfggliplw/FCOS-V-39-FPN-1x.pth?dl=0
+wget https://dl.dropbox.com/s/8n0wyypfggliplw/FCOS-V-39-FPN-1x.pth?dl=1
 CUDA_VISIBLE_DEVICES=0
 python tools/test_net.py --config-file "configs/vovnet/e2e_faster_rcnn_V_39_FPN_2x.yaml" TEST.IMS_PER_BATCH 1 MODEL.WEIGHT FCOS-V-39-FPN-1x.pth
 ```
 
 ## Related projects
 
-[VoVNet-Classification](https://github.com/vov-net/VoVNet-Detectron)
-[VoVNet-Detectron](https://github.com/vov-net/VoVNet-Classification)
+- [VoVNet-Classification](https://github.com/vov-net/VoVNet-Detectron)
+- [VoVNet-Detectron](https://github.com/vov-net/VoVNet-Classification)
