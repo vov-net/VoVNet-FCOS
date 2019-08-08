@@ -3,8 +3,8 @@ from collections import OrderedDict
 
 from torch import nn
 
-from maskrcnn_benchmark.modeling import registry
-from maskrcnn_benchmark.modeling.make_layers import conv_with_kaiming_uniform
+from fcos_core.modeling import registry
+from fcos_core.modeling.make_layers import conv_with_kaiming_uniform
 from . import fpn as fpn_module
 from . import resnet
 from . import mobilenet

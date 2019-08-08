@@ -1,9 +1,9 @@
 import torch
 import torch.nn as nn
 from collections import OrderedDict
-from maskrcnn_benchmark.utils.registry import Registry
-from maskrcnn_benchmark.layers import FrozenBatchNorm2d
-from maskrcnn_benchmark.modeling.make_layers import group_norm
+from fcos_core.utils.registry import Registry
+from fcos_core.layers import FrozenBatchNorm2d
+from fcos_core.modeling.make_layers import group_norm
 
 _GN = False
 
