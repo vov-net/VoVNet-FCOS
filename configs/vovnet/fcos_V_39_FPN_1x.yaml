@@ -1,0 +1,28 @@
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRCNN"
+  WEIGHT: "https://dl.dropbox.com/s/s7f4vyfybyc9qpr/vovnet39_statedict_norm.pth?dl=1"
+  BACKBONE:
+    CONV_BODY: "V-39-FPN-RETINANET"
+    FREEZE_CONV_BODY_AT: 0
+  RPN_ONLY: True
+  FCOS_ON: True
+  RETINANET:
+    USE_C5: False # FCOS uses P5 instead of C5
+DATASETS:
+  TRAIN: ("coco_2014_train", "coco_2014_valminusminival")
+  TEST: ("coco_2014_minival",)
+INPUT:
+  MIN_SIZE_RANGE_TRAIN: (640, 800)
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MAX_SIZE_TEST: 1333
+DATALOADER:
+  SIZE_DIVISIBILITY: 32
+SOLVER:
+  BASE_LR: 0.01
+  WEIGHT_DECAY: 0.0001
+  STEPS: (60000, 80000)
+  MAX_ITER: 90000
+  IMS_PER_BATCH: 16
+  WARMUP_METHOD: "constant"
+OUTPUT_DIR : 'checkpoints/FCOS-V-39-FPN-1x'
