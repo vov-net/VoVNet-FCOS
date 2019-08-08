@@ -82,5 +82,5 @@ python tools/test_net.py --config-file "configs/vovnet/e2e_faster_rcnn_V_39_FPN_
 
 ## Related projects
 
-- [VoVNet-Classification](https://github.com/vov-net/VoVNet-Detectron)
-- [VoVNet-Detectron](https://github.com/vov-net/VoVNet-Classification)
+- [VoVNet-Classification](https://github.com/vov-net/VoVNet-Classification)
+- [VoVNet-Detectron](https://github.com/vov-net/VoVNet-Detectron)
