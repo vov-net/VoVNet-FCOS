@@ -98,7 +98,6 @@ def build_mnv2_fpn_backbone(cfg):
 @registry.BACKBONES.register("V-27-FPN")
 @registry.BACKBONES.register("V-39-FPN")
 @registry.BACKBONES.register("V-57-FPN")
-@registry.BACKBONES.register("V-69-FPN")
 @registry.BACKBONES.register("V-93-FPN")
 def build_vovnet_fpn_backbone(cfg):
     body = vovnet.VoVNet(cfg)
@@ -124,7 +123,6 @@ def build_vovnet_fpn_backbone(cfg):
 @registry.BACKBONES.register("V-27-FPN-RETINANET")
 @registry.BACKBONES.register("V-39-FPN-RETINANET")
 @registry.BACKBONES.register("V-57-FPN-RETINANET")
-@registry.BACKBONES.register("V-69-FPN-RETINANET")
 @registry.BACKBONES.register("V-93-FPN-RETINANET")
 def build_vovnet_fpn_backbone(cfg):
     body = vovnet.VoVNet(cfg)

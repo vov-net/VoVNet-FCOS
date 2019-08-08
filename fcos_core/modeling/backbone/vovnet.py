@@ -1,8 +1,5 @@
-import os
 import torch
 import torch.nn as nn
-import torch.nn.init as init
-import torch.nn.functional as F
 from collections import OrderedDict
 from maskrcnn_benchmark.utils.registry import Registry
 from maskrcnn_benchmark.layers import FrozenBatchNorm2d
@@ -31,12 +28,6 @@ VoVNet57FPNStagesTo5 = {
     'block_per_stage': [1, 1, 4, 3]
 }
 
-VoVNet69FPNStagesTo5 = {
-    'config_stage_ch': [128, 160, 192, 224],
-    'config_concat_ch': [256, 512, 768, 1024],
-    'layer_per_block': 5,
-    'block_per_stage': [1, 1, 6, 3]
-}
 
 VoVNet93FPNStagesTo5 = {
     'config_stage_ch': [128, 160, 192, 224],
@@ -47,11 +38,10 @@ VoVNet93FPNStagesTo5 = {
 
 _STAGE_SPECS = Registry({
     "V-27-FPN": VoVNet27FPNStagesTo5,
-    "V-39-deFPN": VoVNet39FPNStagesTo5,
     "V-39-FPN": VoVNet39FPNStagesTo5,
     "V-57-FPN": VoVNet57FPNStagesTo5,
-    "V-69-FPN": VoVNet69FPNStagesTo5,
     "V-93-FPN": VoVNet93FPNStagesTo5,
+    "V-27-FPN-RETINANET": VoVNet27FPNStagesTo5,
     "V-39-FPN-RETINANET": VoVNet39FPNStagesTo5,
     "V-57-FPN-RETINANET": VoVNet57FPNStagesTo5,
     "V-93-FPN-RETINANET": VoVNet93FPNStagesTo5
@@ -185,29 +175,6 @@ class VoVNet(nn.Module):
         # Optionally freeze (requires_grad=False) parts of the backbone
         self._freeze_backbone(cfg.MODEL.BACKBONE.FREEZE_CONV_BODY_AT)
 
-    # def _initialize_weights(self, cfg):
-    #     if cfg.MODEL.WEIGHT is not None:
-    #         if not os.path.isfile(cfg.MODEL.WEIGHT):
-    #             raise RuntimeError(f'=> {cfg.MODEL.WEIGHT} not found')
-    #         checkpoint = torch.load(cfg.MODEL.WEIGHT)
-    #         pretrain_dict = checkpoint['state_dict']
-    #         model_dict = {}
-    #         state_dict = self.state_dict()
-    #         for k, v in pretrain_dict.items():
-    #             if k.startswith('module.classifier'):
-    #                 continue
-    #             k = k.replace('module.features.', '')
-    #             if 'stem' in k:
-    #                 k = 'stem.' + k
-    #             if k in state_dict:
-    #                 model_dict[k] = v
-    #                 # print(f'{k} loaded')
-    #         state_dict.update(model_dict)
-    #         self.load_state_dict(state_dict)
-    #     else:
-    #         for m in self.modules():
-    #             if isinstance(m, nn.Conv2d):
-    #                 nn.init.kaiming_normal_(m.weight)
 
     def _initialize_weights(self):
         for m in self.modules():
@@ -237,10 +204,3 @@ class VoVNet(nn.Module):
             outputs.append(x)
 
         return outputs
-
-    # def train(self, mode=True):
-    #     super().train(mode)
-    #     for m in self.modules():
-    #         if isinstance(m, nn.BatchNorm2d):
-    #             freeze_bn_params(m)
-
