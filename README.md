@@ -1,6 +1,6 @@
 # [FCOS](https://arxiv.org/abs/1904.01355) with [VoVNet](https://arxiv.org/abs/1904.09730)(CVPRW'19) Efficient Backbone Networks
 
-This repository contains [FCOS](https://github.com/facebookresearch/maskrcnn-benchmark)(ICCV'19) with [VoVNet](https://arxiv.org/abs/1904.09730) (CVPRW'19) efficient backbone networks. This code based on pytorch imeplementation of [FCOS](https://github.com/tianzhi0549/FCOS) 
+This repository contains [FCOS](https://arxiv.org/abs/1904.01355)(ICCV'19) with [VoVNet](https://arxiv.org/abs/1904.09730) (CVPRW'19) efficient backbone networks. This code based on pytorch imeplementation of [FCOS](https://github.com/tianzhi0549/FCOS) 
 
 ## Highlights
 
@@ -82,5 +82,5 @@ python tools/test_net.py --config-file "configs/vovnet/e2e_faster_rcnn_V_39_FPN_
 
 ## Related projects
 
-- [VoVNet-Classification](https://github.com/vov-net/VoVNet-Classification)
-- [VoVNet-Detectron](https://github.com/vov-net/VoVNet-Detectron)
+- [VoVNet-Classification](https://github.com/vov-net/VoVNet-Detectron)
+- [VoVNet-Detectron](https://github.com/vov-net/VoVNet-Classification)
